@@ -3,6 +3,8 @@
 **面向哔哩哔哩 CC 字幕的单集下载、批量下载、复制与查看油猴脚本**
 
 [![Release](https://img.shields.io/github/v/release/WanderLandWalker/Bilibili-CC-Subtitle-Tool?label=Release&style=flat)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases/latest)
+[![Greasy Fork](https://img.shields.io/badge/Greasy_Fork-安装脚本-green?style=flat)](https://greasyfork.org/zh-CN/scripts/596997-bilibili-cc%E5%AD%97%E5%B9%95%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E5%A4%8D%E5%88%B6%E6%9F%A5%E7%9C%8B%E5%99%A8)
+[![ScriptCat](https://img.shields.io/badge/ScriptCat-安装脚本-orange?style=flat)](https://scriptcat.org/zh-CN/script-show-page/8104)
 [![GitHub Stars](https://img.shields.io/github/stars/WanderLandWalker/Bilibili-CC-Subtitle-Tool?style=flat)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool)
 [![Version](https://img.shields.io/badge/Version-v1.0-blue?style=flat)](./Bilibili-CC-Subtitle-Tool.user.js)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](https://opensource.org/licenses/MIT)
@@ -35,7 +37,17 @@
 
 ## 安装
 
-### 方式一：手动安装（推荐）
+### 方式一：从脚本平台安装（推荐）
+
+选择下面任一平台打开安装页面，点击“安装”即可：
+
+[![Greasy Fork](https://img.shields.io/badge/-Greasy_Fork-green?style=flat)](https://greasyfork.org/zh-CN/scripts/596997-bilibili-cc%E5%AD%97%E5%B9%95%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E5%A4%8D%E5%88%B6%E6%9F%A5%E7%9C%8B%E5%99%A8) [![ScriptCat](https://img.shields.io/badge/-ScriptCat-orange?style=flat)](https://scriptcat.org/zh-CN/script-show-page/8104)
+
+安装前需要先安装用户脚本管理器：[Tampermonkey](https://www.tampermonkey.net/) 或 [Violentmonkey](https://violentmonkey.github.io/)。
+
+平台页面已经配置源代码同步和 README 说明同步，后续可以直接从平台检查更新。
+
+### 方式二：手动安装
 
 1. 安装用户脚本管理器：[Tampermonkey](https://www.tampermonkey.net/) 或 [Violentmonkey](https://violentmonkey.github.io/)。
 2. 打开管理器，选择“新建脚本”。
@@ -48,7 +60,7 @@
    Bilibili-CC-Subtitle-Tool.user.js
 ```
 
-### 方式二：从 GitHub 安装
+### 方式三：从 GitHub 安装
 
 1. 打开 [v1.0 Release](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases/tag/v1.0)。
 2. 点击 [安装脚本](https://raw.githubusercontent.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/main/Bilibili-CC-Subtitle-Tool.user.js)。
@@ -56,7 +68,7 @@
 
 脚本已经配置 `@updateURL` 和 `@downloadURL`，后续发布新版本后，油猴可以从 GitHub raw 地址检查更新。
 
-### 方式三：从 Release 源码安装
+### 方式四：从 Release 源码安装
 
 1. 打开 [Releases](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases)。
 2. 下载对应版本的 Source code 压缩包。
