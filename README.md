@@ -2,8 +2,10 @@
 
 **面向哔哩哔哩 CC 字幕的单集下载、批量下载、复制与查看油猴脚本**
 
+[![Release](https://img.shields.io/github/v/release/WanderLandWalker/Bilibili-CC-Subtitle-Tool?label=Release&style=flat)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases/latest)
+[![GitHub Stars](https://img.shields.io/github/stars/WanderLandWalker/Bilibili-CC-Subtitle-Tool?style=flat)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool)
 [![Version](https://img.shields.io/badge/Version-v1.0-blue?style=flat)](./Bilibili-CC-Subtitle-Tool.user.js)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](./Bilibili-CC-Subtitle-Tool.user.js)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](https://opensource.org/licenses/MIT)
 
 本项目是在 Bilibili CC 字幕工具基础上的完善版本，重点整合了字幕查看、复制、格式转换和合集/选集批量下载功能。README 的组织方式参考了 [SCUT_Auto_Grader](https://github.com/WanderLandWalker/SCUT_Auto_Grader)。
 
@@ -22,6 +24,15 @@
 | **悬浮按钮设置** | 可通过油猴菜单开启/关闭悬浮按钮；右键悬浮按钮可临时或永久隐藏 |
 | **多播放器兼容** | 兼容 B 站新旧播放器字幕面板，并保留本地字幕相关入口 |
 
+### 核心特性
+
+- **合集/选集自动识别**：读取播放器选集列表、合集数据和页面内嵌视频信息，支持普通视频、课程、番剧和播放列表。
+- **逐集语言选择**：批量下载可以固定语言，也可以让每一集自动选择该集第一种可用语言。
+- **失败可追踪**：单集失败不会中断整个批量任务，完成后显示成功数量、失败数量和失败原因。
+- **格式转换内置**：在浏览器中直接转换时间轴和字幕文本，不需要额外安装 Python、Node.js 或桌面软件。
+- **旧版播放器兼容**：保留旧版、2.x、3.14、3.15 等播放器的字幕入口适配。
+- **设置本地保存**：悬浮按钮显示状态、临时/永久隐藏状态等设置保存在当前浏览器本地。
+
 ## 安装
 
 ### 方式一：手动安装（推荐）
@@ -36,6 +47,20 @@
 ```text
    Bilibili-CC-Subtitle-Tool.user.js
 ```
+
+### 方式二：从 GitHub 安装
+
+1. 打开 [v1.0 Release](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases/tag/v1.0)。
+2. 点击 [安装脚本](https://raw.githubusercontent.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/main/Bilibili-CC-Subtitle-Tool.user.js)。
+3. 油猴管理器弹出安装页面后，确认脚本名称和来源，点击安装。
+
+脚本已经配置 `@updateURL` 和 `@downloadURL`，后续发布新版本后，油猴可以从 GitHub raw 地址检查更新。
+
+### 方式三：从 Release 源码安装
+
+1. 打开 [Releases](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool/releases)。
+2. 下载对应版本的 Source code 压缩包。
+3. 解压后打开 `Bilibili-CC-Subtitle-Tool.user.js`，复制到油猴新建脚本中并保存。
 
 ## 使用
 
@@ -79,6 +104,16 @@
 
 “临时关闭”只影响当前页面；“永久关闭”会保存全局设置。即使关闭悬浮按钮，油猴菜单中的字幕查看和批量下载功能仍然可以使用。
 
+### 油猴菜单
+
+脚本注册了以下菜单项：
+
+- `打开字幕下载窗口`
+- `批量下载字幕`
+- `打开/关闭悬浮按钮（全局设置）`
+
+因此，即使悬浮按钮被隐藏，也可以通过油猴菜单继续使用全部主要功能。
+
 ## 支持格式
 
 | 格式 | 适用场景 |
@@ -116,6 +151,15 @@
 |------|------|
 | v1.0 | 统一为正常字幕查看窗口；整合单集下载、复制、查看、语言切换和合集/选集批量下载；增加多格式导出、拖动缩放、复制成功提示及悬浮按钮全局设置 |
 
+## 技术实现
+
+- **字幕配置读取**：从 B 站播放器接口读取当前视频或选集的 CC 字幕配置，再请求对应字幕资源。
+- **选集识别**：优先读取页面中的选集 DOM 和 `data-cid`，并兼容 `ugc_season`、视频页内嵌数据及番剧选集数据。
+- **批量处理**：逐集获取字幕并在任务窗口中实时汇总结果；成功文件使用浏览器 `Blob` 打包成 ZIP 下载。
+- **格式编码**：内置 TXT、SRT、VTT、ASS、LRC、BCC 的编码和时间轴转换逻辑。
+- **窗口交互**：使用原生 DOM/CSS 实现拖动、右下角方形手柄缩放、复制提示和页面透明背景，不依赖第三方前端框架。
+- **播放器适配**：通过观察 B 站播放器节点和页面变化，在播放器切换或页面局部刷新后重新初始化字幕入口。
+
 ## 文件说明
 
 | 文件 | 说明 |
@@ -133,9 +177,27 @@
 - 复制功能只把内容写入当前浏览器剪贴板。
 - 悬浮按钮和窗口相关设置保存在浏览器本地。
 
+## 致谢
+
+本项目是在以下两个字幕项目的基础上继续整理和完善，特别感谢原作者和后续维护者的工作：
+
+1. **Bilibili CC字幕工具**：感谢作者 **indefined**。本项目沿用了原脚本的 CC 字幕读取、播放器适配和字幕格式转换思路。
+   - [GitHub：indefined/UserScripts](https://github.com/indefined/UserScripts)
+   - [Greasy Fork：Bilibili CC字幕工具](https://greasyfork.org/scripts/378513)
+2. **0520Bilibili CC字幕工具（优化版）-魔改版-独立查看器**：感谢作者 **rui ma** 及相关优化贡献者。本项目参考了其独立查看器、窗口拖动、复制和界面交互实现。
+   - [Greasy Fork：0520Bilibili CC字幕工具（优化版）-魔改版-独立查看器](https://greasyfork.org/en/scripts/579166-0520bilibili-cc%E5%AD%97%E5%B9%95%E5%B7%A5%E5%85%B7-%E4%BC%98%E5%8C%96%E7%89%88-%E9%AD%94%E6%94%B9%E7%89%88-%E7%8B%AC%E7%AB%8B%E6%9F%A5%E7%9C%8B%E5%99%A8)
+
+本项目仅在原有功能基础上进行整合、修复和扩展，相关版权和许可证信息以各上游项目页面及脚本声明为准。
+
 ## 许可证
 
 [MIT License](https://opensource.org/licenses/MIT)
+
+## 如果觉得有用
+
+如果这个脚本对你有帮助，欢迎给项目点一个 Star，或者提交 Issue 反馈 B 站页面结构变化和使用问题。
+
+[![GitHub Stars](https://img.shields.io/github/stars/WanderLandWalker/Bilibili-CC-Subtitle-Tool?style=social)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool)
 
 ## 参考
 
