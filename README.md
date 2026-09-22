@@ -199,6 +199,10 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/WanderLandWalker/Bilibili-CC-Subtitle-Tool?style=social)](https://github.com/WanderLandWalker/Bilibili-CC-Subtitle-Tool)
 
+也欢迎请作者喝杯咖啡：
+
+[![赞赏码](https://raw.githubusercontent.com/WanderLandWalker/SCUT_Lesson_Table/master/images/donate.jpg)](https://github.com/WanderLandWalker/SCUT_Lesson_Table/blob/master/images/donate.jpg)
+
 ## 参考
 
 - [SCUT_Auto_Grader](https://github.com/WanderLandWalker/SCUT_Auto_Grader)：README 结构与表达方式参考项目。
